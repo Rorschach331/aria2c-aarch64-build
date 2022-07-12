@@ -30,17 +30,17 @@ jobs:
       # Runs a single command using the runners shell
       - name: 执行依赖
         run: |
-          sudo apt  install \
-          make binutils autoconf automake autotools-dev \
-          libtool pkg-config git curl dpkg-dev autopoint libcppunit-dev \
-          libxml2-dev  lzip wget -y
+          #sudo apt  install \
+          #make binutils autoconf automake autotools-dev \
+          #libtool pkg-config git curl dpkg-dev autopoint libcppunit-dev \
+          #libxml2-dev  lzip wget -y
       - name: 编译
         run: |
           git clone https://github.com/aria2/aria2.git
           cd aria2
           pwd
           echo "aria2_path=$(pwd)" >> $GITHUB_ENV
-          cd {{ env.aria2_path }}
+          echo ${env:aria2_path}
           pwd
           #echo "::set-env name=ARIAPATH::$(pwd)"
           #autoreconf -i
