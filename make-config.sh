@@ -15,7 +15,7 @@ HOST="aarch64-linux-gnu"
 PREFIX="/opt/aria2-aarch64"
 LOCAL_DIR="/opt/aria2-aarch64/build_libs"
 
-TOOL_BIN_DIR="/opt/aria2-aarch64/tools/gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu/bin"
+TOOL_BIN_DIR="/opt/aria2-aarch64/tools/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin"
 PATH=${TOOL_BIN_DIR}:$PATH
 
 CFLAGS="-march=armv8-a -mtune=cortex-a53"

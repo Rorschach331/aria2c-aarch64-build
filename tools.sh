@@ -4,24 +4,21 @@
 #           libtool pkg-config git curl dpkg-dev autopoint libcppunit-dev 
 #           libxml2-dev libgcrypt11-dev lzip wget unzip
 
-#COMPILER AND PATH
-PREFIX=/opt/aria2-i386/build_libs
-C_COMPILER="gcc"
-CXX_COMPILER="g++"
 
 #CHECK TOOL FOR DOWNLOAD
  aria2c --help > /dev/null
  if [ "$?" -eq 0 ] ; then
-   DOWNLOADER="aria2c --check-certificate=false -o tools-master.zip"
+   DOWNLOADER="aria2c --check-certificate=false -o tools.tar.xz"
  else
-   DOWNLOADER="wget -c --no-check-certificate"
+   DOWNLOADER="wget -c --no-check-certificate -O tools.tar.xz"
  fi
 
 #BUILD TOOLS FOR RASPBERRY
 
  mkdir -p /opt/aria2-aarch64/tools
+ ls /opt/aria2-aarch64/tools
  cd /tmp/
- $DOWNLOADER https://mirrors.tuna.tsinghua.edu.cn/armbian-releases/_toolchain/gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu.tar.xz
- xz -d gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu.tar.xz
- tar -xvf gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu.tar -C /opt/aria2-aarch64/tools/
- rm  gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu.tar
+$DOWNLOADER  https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/aarch64-linux-gnu/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz
+ xz -d tools.tar.xz
+ tar -xvf tools.tar -C /opt/aria2-aarch64/tools/
+ rm  tools.tar
