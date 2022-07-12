@@ -38,10 +38,9 @@ jobs:
         run: |
           git clone https://github.com/aria2/aria2.git
           cd aria2
-          pwd
           echo "aria2_path=::$(pwd)" >> $GITHUB_ENV
-          echo ${ env.aria2_path }
-          cd ${ env.aria2_path }
+          echo ${ env:aria2_path }
+          cd ${ env:aria2_path }
           pwd
           #echo "::set-env name=ARIAPATH::$(pwd)"
           #autoreconf -i
