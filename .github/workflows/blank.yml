@@ -38,18 +38,20 @@ jobs:
         run: |
           git clone https://github.com/aria2/aria2.git
           cd aria2
-          echo "::set-env name=ARIAPATH::$(pwd)"
-          autoreconf -i
-          git clone https://github.com/Rorschach331/aria2c-aarch64-build.git ./custom-shells
-          cd ./custom-shells
-          ls
-          sudo chmod +x *.sh
-          sudo ./tools.sh
-          sudo ./libs.sh
-          cd {{ env.ARIAPATH }}
-          ./custom-shells/make-config.sh
-          make
-          /opt/aria2-aarch64/tools/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-strip ./src/aria2c
+          echo "aria2_path=::$(pwd)" >> $GITHUB_ENV
+          echo {{ env.aria2_path }}
+          #echo "::set-env name=ARIAPATH::$(pwd)"
+          #autoreconf -i
+          #git clone https://github.com/Rorschach331/aria2c-aarch64-build.git ./custom-shells
+          #cd ./custom-shells
+          #ls
+          #sudo chmod +x *.sh
+          #sudo ./tools.sh
+          #sudo ./libs.sh
+          #cd {{ env.aria2_path }}
+          #./custom-shells/make-config.sh
+          #make
+          #/opt/aria2-aarch64/tools/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-strip ./src/aria2c
           
 
 
