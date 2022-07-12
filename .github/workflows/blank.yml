@@ -40,9 +40,10 @@ jobs:
           cd aria2
           git clone https://github.com/Rorschach331/aria2c-aarch64-build.git ./custom-shells
           cd ./custom-shells
-          sudo ./tools.sh
-          sudo ./libs.sh
-          sudo ./make-config.sh
+          ls
+          ./tools.sh
+          ./libs.sh
+          ./make-config.sh
           cd ../
           autoreconf -i
           ./make-config.sh
