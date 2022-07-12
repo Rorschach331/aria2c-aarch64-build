@@ -45,4 +45,4 @@ CONFIGURE="./configure --prefix=${LOCAL_DIR} --host=$HOST"
     PKG_CONFIG_PATH="$LOCAL_DIR/lib/pkgconfig" \
     ARIA2_STATIC=yes
 
-MAKE
+$MAKE
