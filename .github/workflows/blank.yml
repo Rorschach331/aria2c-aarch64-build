@@ -39,7 +39,8 @@ jobs:
           git clone https://github.com/aria2/aria2.git
           cd aria2
           echo "aria2_path=::$(pwd)" >> $GITHUB_ENV
-          echo {{ env.aria2_path }}
+          cd {{ env.aria2_path }}
+          pwd
           #echo "::set-env name=ARIAPATH::$(pwd)"
           #autoreconf -i
           #git clone https://github.com/Rorschach331/aria2c-aarch64-build.git ./custom-shells
