@@ -68,16 +68,21 @@ jobs:
         id: tag
         if: cancelled() != true
         run: |
-          VERSION=$(curl -sL https://api.github.com/repos/aria2/aria2/releases | jq -r ".[0].name")
-          echo "::set-output name=release_tag::$VERSION builds"
-          echo "::set-output name=status::success"
+          ARIA2VERSION=$(curl -sL https://api.github.com/repos/aria2/aria2/releases | jq -r ".[0].name")
+          MYVERSION=$(curl -sL https://api.github.com/repos/Rorschach331/aria2c-aarch64-build/releases | jq -r ".[0].name")
+          echo "::set-output name=release_tag::$ARIA2VERSION"
+          if [ $ARIA2VERSION != $MYVERSION ]
+          then
+            echo "::set-output name=status::success"
+          fi
+          
       - name: Upload binary to release
         uses: softprops/action-gh-release@v1
         if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: aria2c-aarch64-linux-builds
+          name: aria2c-aarch64-gnu-linux-builds
           tag_name: ${{ steps.tag.outputs.release_tag }}
           files: ./aria2/src/aria2c
 
