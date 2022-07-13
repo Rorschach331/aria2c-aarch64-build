@@ -83,7 +83,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: aria2c-aarch64-gnu-linux-builds
+          name: aria2c-aarch64-gnu-linux-builds-${{steps.tag.outputs.release_tag}}
           tag_name: ${{ steps.tag.outputs.release_tag }}
           files: ./aria2/src/aria2c
 
