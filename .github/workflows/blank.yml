@@ -66,7 +66,7 @@ jobs:
           
       - name: Generate release tag
         id: tag
-        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        if: cancelled() != true
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
           echo "::set-output name=status::success"
@@ -87,7 +87,7 @@ jobs:
 
       - name: Remove old Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
-        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        if: cancelled() != true
         with:
           keep_latest: 3
           delete_tags: true
