@@ -68,8 +68,8 @@ jobs:
         id: tag
         if: cancelled() != true
         run: |
-          ARIA2VERSION=$(curl -sL https://api.github.com/repos/aria2/aria2/releases | jq -r ".[0].name")
-          MYVERSION=$(curl -sL https://api.github.com/repos/Rorschach331/aria2c-aarch64-build/releases | jq -r ".[0].name")
+          ARIA2VERSION=$(curl -sL https://api.github.com/repos/aria2/aria2/releases | jq -r ".[0].tag_name")
+          MYVERSION=$(curl -sL https://api.github.com/repos/Rorschach331/aria2c-aarch64-build/releases | jq -r ".[0].tag_name")
           echo "::set-output name=release_tag::$ARIA2VERSION"
           if [ "$ARIA2VERSION" != "$MYVERSION" ]
           then
