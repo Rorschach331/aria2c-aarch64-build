@@ -71,8 +71,9 @@ jobs:
           ARIA2VERSION=$(curl -sL https://api.github.com/repos/aria2/aria2/releases | jq -r ".[0].name")
           MYVERSION=$(curl -sL https://api.github.com/repos/Rorschach331/aria2c-aarch64-build/releases | jq -r ".[0].name")
           echo "::set-output name=release_tag::$ARIA2VERSION"
-          if [ $ARIA2VERSION != $MYVERSION ]
+          if [ "$ARIA2VERSION" != "$MYVERSION" ]
           then
+            echo "版本不一致，可以发布"
             echo "::set-output name=status::success"
           fi
           
