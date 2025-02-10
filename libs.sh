@@ -68,8 +68,8 @@ cd $BUILD_DIRECTORY
  # c-ares build
   cd ..
   $DOWNLOADER $C_ARES
-  tar zxvf c-ares-1.18.1.tar.gz
-  cd c-ares-1.18.1/
+  tar zxvf c-ares-1.34.4.tar.gz
+  cd c-ares-1.34.4/
   PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig/ LD_LIBRARY_PATH=$PREFIX/lib/ CC=$HOST-gcc CXX=$HOST-g++ ./configure --host=$HOST --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` --prefix=$PREFIX --enable-static --disable-shared
   make
   make install
@@ -77,8 +77,8 @@ cd $BUILD_DIRECTORY
  # Openssl build
   cd ..
   $DOWNLOADER $OPENSSL
-  tar zxvf openssl-1.1.1q.tar.gz
-  cd openssl-1.1.1q/
+  tar zxvf openssl-3.4.0.tar.gz
+  cd openssl-3.4.0/
   PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig/ LD_LIBRARY_PATH=$PREFIX/lib/ CC=$HOST-gcc CXX=$HOST-g++  ./Configure linux-armv4 no-asm $CFLAGS --prefix=$PREFIX shared zlib zlib-dynamic -D_GNU_SOURCE -D_BSD_SOURCE --with-zlib-lib=$LOCAL_DIR/lib --with-zlib-include=$LOCAL_DIR/include
   make CC=$CC
   make CC=$CC install INSTALLTOP=$DEST OPENSSLDIR=$DEST/ssl
@@ -95,8 +95,8 @@ cd $BUILD_DIRECTORY
  # libssh2
   cd ..
   $DOWNLOADER $SSH2
-  tar zxvf libssh2-1.10.0.tar.gz
-  cd libssh2-1.10.0/
+  tar zxvf libssh2-1.11.1.tar.gz
+  cd libssh2-1.11.1/
   rm -rf $PREFIX/lib/pkgconfig/libssh2.pc
   PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig/ LD_LIBRARY_PATH=$PREFIX/lib/ CC=$HOST-gcc CXX=$HOST-g++ AR=$HOST-ar RANLIB=$HOST-ranlib ./configure --host=$HOST --without-libgcrypt --with-openssl --without-wincng  --with-libssl-prefix=$PREFIX --prefix=$PREFIX --enable-static --disable-shared LDFLAGS="-L$LOCAL_DIR/openssl/lib" PKG_CONFIG_PATH="$LOCAL_DIR/openssl/lib/pkgconfig" CPPFLAGS="-I$DEST/openssl/include"
   make
