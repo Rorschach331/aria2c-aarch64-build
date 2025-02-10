@@ -19,11 +19,11 @@
 
 ## DEPENDENCES ##
 ZLIB=https://sourceforge.net/projects/libpng/files/zlib/1.2.11/zlib-1.2.11.tar.gz
-OPENSSL=https://www.openssl.org/source/openssl-1.1.1q.tar.gz
+OPENSSL=https://github.com/openssl/openssl/releases/download/openssl-3.4.0/openssl-3.4.0.tar.gz
 EXPAT=https://github.com/libexpat/libexpat/releases/download/R_2_4_8/expat-2.4.8.tar.bz2
 SQLITE3=https://sqlite.org/2022/sqlite-autoconf-3390000.tar.gz
-C_ARES=https://c-ares.org/download/c-ares-1.18.1.tar.gz
-SSH2=https://www.libssh2.org/download/libssh2-1.10.0.tar.gz
+C_ARES=https://github.com/c-ares/c-ares/releases/download/v1.34.4/c-ares-1.34.4.tar.gz
+SSH2=https://libssh2.org/download/libssh2-1.11.1.tar.gz
 
 ## CONFIG ##
 ARCH="armhf"
