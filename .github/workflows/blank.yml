@@ -33,7 +33,7 @@ jobs:
           sudo apt  install \
           make binutils autoconf automake autotools-dev \
           libtool pkg-config git curl dpkg-dev autopoint libcppunit-dev \
-          libxml2-dev  lzip wget jq -y
+          libxml2-dev  lzip wget jq libcares-dev -y
       - name: 准备
         run: |
           git clone https://github.com/aria2/aria2.git
