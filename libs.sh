@@ -7,10 +7,10 @@ set -e
 # 统一的版本号配置
 # ==========================================================
 ZLIB_VER="1.3.1"
-OPENSSL_VER="3.4.0"
-EXPAT_VER="2.4.8"
-SQLITE_VER="3390000"
-C_ARES_VER="1.34.4"
+OPENSSL_VER="3.5.5"
+EXPAT_VER="2.7.4"
+SQLITE_VER="3510200"
+C_ARES_VER="1.34.6"
 LIBSSH2_VER="1.11.1"
 
 # ==========================================================
@@ -20,7 +20,7 @@ LIBSSH2_VER="1.11.1"
 ZLIB_URL="https://github.com/madler/zlib/releases/download/v${ZLIB_VER}/zlib-${ZLIB_VER}.tar.gz"
 OPENSSL_URL="https://github.com/openssl/openssl/releases/download/openssl-${OPENSSL_VER}/openssl-${OPENSSL_VER}.tar.gz"
 EXPAT_URL="https://github.com/libexpat/libexpat/releases/download/R_${EXPAT_VER//./_}/expat-${EXPAT_VER}.tar.bz2"
-SQLITE3_URL="https://sqlite.org/2022/sqlite-autoconf-${SQLITE_VER}.tar.gz"
+SQLITE3_URL="https://sqlite.org/2026/sqlite-autoconf-${SQLITE_VER}.tar.gz"
 C_ARE_URL="https://github.com/c-ares/c-ares/releases/download/v${C_ARES_VER}/c-ares-${C_ARES_VER}.tar.gz"
 SSH2_URL="https://libssh2.org/download/libssh2-${LIBSSH2_VER}.tar.gz"
 
