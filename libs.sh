@@ -39,8 +39,8 @@ export PATH=${TOOL_BIN_DIR}:$PATH
 # 显式导出编译器
 export CC=$HOST-gcc
 export CXX=$HOST-g++
-export AR=$HOST-ar
-export RANLIB=$HOST-ranlib
+export AR=$HOST-gcc-ar
+export RANLIB=$HOST-gcc-ranlib
 export STRIP=$HOST-strip
 export LD=$HOST-ld
 

@@ -16,6 +16,9 @@ export PATH=${TOOL_BIN_DIR}:$PATH
 # ==========================================================
 export CC="$HOST-gcc"
 export CXX="$HOST-g++"
+export AR="$HOST-gcc-ar"
+export RANLIB="$HOST-gcc-ranlib"
+export NM="$HOST-gcc-nm"
 export CPATH="$LOCAL_DIR/include"
 export LIBRARY_PATH="$LOCAL_DIR/lib"
 export PKG_CONFIG_PATH="$LOCAL_DIR/lib/pkgconfig"
