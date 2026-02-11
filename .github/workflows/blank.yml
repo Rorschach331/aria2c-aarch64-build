@@ -6,11 +6,11 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   watch:
-     types: [started]
+    types: [started]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -47,7 +47,7 @@ jobs:
           sudo ./tools.sh
           sudo ./libs.sh
           #cd /tmp/build-aria2c/aria2
-          #cd {{ env.aria2_path }}          
+          #cd {{ env.aria2_path }}
       - name: 编译
         id: makefile
         run: |
@@ -61,9 +61,9 @@ jobs:
         uses: actions/upload-artifact@main
         if: steps.makefile.outputs.status == 'success' && !cancelled()
         with:
-            name: aria2c-aarch64-linux-builds
-            path: ./aria2/src/aria2c
-          
+          name: aria2c-aarch64-linux-builds
+          path: aria2/src/aria2c
+
       - name: Generate release tag
         id: tag
         if: cancelled() != true
@@ -76,7 +76,7 @@ jobs:
             echo "版本不一致，可以发布"
             echo "::set-output name=status::success"
           fi
-          
+
       - name: Upload binary to release
         uses: softprops/action-gh-release@v1
         if: steps.tag.outputs.status == 'success' && !cancelled()
@@ -101,4 +101,3 @@ jobs:
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
