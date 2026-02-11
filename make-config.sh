@@ -20,9 +20,17 @@ export CPATH="$LOCAL_DIR/include"
 export LIBRARY_PATH="$LOCAL_DIR/lib"
 export PKG_CONFIG_PATH="$LOCAL_DIR/lib/pkgconfig"
 
-export CFLAGS="-march=armv8-a -mtune=cortex-a53"
+# 编译器优化参数：
+# -Os: 体积优先优化
+# -flto: 链接时跨模块优化 (Link Time Optimization)
+# -ffunction-sections -fdata-sections: 将函数和数据放入独立段，配合 --gc-sections 清除死代码
+export CFLAGS="-march=armv8-a -mtune=cortex-a53 -Os -flto -ffunction-sections -fdata-sections"
 export CXXFLAGS="$CFLAGS"
-export LDFLAGS="-L$LOCAL_DIR/lib"
+
+# 链接器优化参数：
+# -Wl,--gc-sections: 移除未使用的代码段 (死代码消除)
+# -Wl,--strip-all: 移除所有符号表和调试信息 (比 strip 命令更彻底)
+export LDFLAGS="-L$LOCAL_DIR/lib -flto -Wl,--gc-sections -Wl,--strip-all"
 
 MAKE="make -j`nproc`"
 
