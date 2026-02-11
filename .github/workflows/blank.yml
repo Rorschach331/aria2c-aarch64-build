@@ -87,7 +87,7 @@ jobs:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           files: aria2/src/aria2c
           body: |
-            ## ✨ Release Notes (Powered by Antigravity)
+            ## ✨ Release Notes
 
             ### 🛠 Major Fixes & Improvements
             - **OpenSSL 3.x Support**: Resolved "Legacy Provider" loading failures and static linking issues.
@@ -99,7 +99,7 @@ jobs:
               - OpenSSL -> 3.4.0
               - Libssh2 -> 1.11.1
 
-            > This build script is optimized and maintained by **Antigravity**.
+            > This project's build scripts and configuration were analyzed, fixed, and optimized using **Antigravity AI**.
 
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
