@@ -25,7 +25,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
       - name: 执行依赖
@@ -56,9 +56,9 @@ jobs:
           ./custom-shells/make-config.sh
           make
           /opt/aria2-aarch64/tools/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-strip ./src/aria2c
-          echo "::set-output name=status::success"
+          echo "status=success" >> $GITHUB_OUTPUT
       - name: 打包
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         if: steps.makefile.outputs.status == 'success' && !cancelled()
         with:
           name: aria2c-aarch64-linux-builds
@@ -70,15 +70,15 @@ jobs:
         run: |
           ARIA2VERSION=$(curl -sL https://api.github.com/repos/aria2/aria2/releases | jq -r ".[0].tag_name")
           MYVERSION=$(curl -sL https://api.github.com/repos/Rorschach331/aria2c-aarch64-build/releases | jq -r ".[0].tag_name")
-          echo "::set-output name=release_tag::$ARIA2VERSION"
+          echo "release_tag=$ARIA2VERSION" >> $GITHUB_OUTPUT
           if [ "$ARIA2VERSION" != "$MYVERSION" ]
           then
             echo "版本不一致，可以发布"
-            echo "::set-output name=status::success"
+            echo "status=success" >> $GITHUB_OUTPUT
           fi
 
       - name: Upload binary to release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -102,13 +102,13 @@ jobs:
             > This project's build scripts and configuration were analyzed, fixed, and optimized using **Antigravity AI**.
 
       - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
+        uses: GitRML/delete-workflow-runs@v2
         with:
           retain_days: 1
           keep_minimum_runs: 3
 
       - name: Remove old Releases
-        uses: dev-drprasad/delete-older-releases@v0.1.0
+        uses: dev-drprasad/delete-older-releases@v0.3.3
         if: cancelled() != true
         with:
           keep_latest: 3
