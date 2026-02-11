@@ -38,6 +38,7 @@ echo "Configuring aria2 for $HOST..."
     --with-libexpat --with-libexpat-prefix=${LOCAL_DIR} \
     --with-sqlite3 --with-sqlite3-prefix=${LOCAL_DIR} \
     --with-libcares --with-libcares-prefix=${LOCAL_DIR} \
+    CPPFLAGS="$CPPFLAGS" \
     LDFLAGS="$LDFLAGS" \
     PKG_CONFIG_PATH="$LOCAL_DIR/lib/pkgconfig" \
     ARIA2_STATIC=yes

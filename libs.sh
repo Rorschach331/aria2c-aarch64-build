@@ -99,7 +99,7 @@ cd openssl-${OPENSSL_VER}/
 # 关键修复：使用 no-module 将 provider 集成进静态库，enable-legacy 开启支持
 PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig/ LD_LIBRARY_PATH=$PREFIX/lib/ \
 CC=$CC CXX=$CXX \
-./Configure linux-aarch64 no-shared no-module no-asm enable-legacy $CFLAGS --prefix=$PREFIX zlib -D_GNU_SOURCE -D_BSD_SOURCE --with-zlib-lib=$LOCAL_DIR/lib --with-zlib-include=$LOCAL_DIR/include
+./Configure linux-aarch64 no-shared no-module no-asm enable-legacy $CFLAGS --prefix=$PREFIX --libdir=lib zlib -D_GNU_SOURCE -D_BSD_SOURCE --with-zlib-lib=$LOCAL_DIR/lib --with-zlib-include=$LOCAL_DIR/include
 $MAKE CC=$CC && make CC=$CC install
 cd ..
 
