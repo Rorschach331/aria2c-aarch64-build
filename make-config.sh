@@ -32,6 +32,9 @@ MAKE="make -j`nproc`"
 echo "Configuring aria2 for $HOST..."
 echo "Using CPATH: $CPATH"
 echo "Check OpenSSL header: $(ls -l $LOCAL_DIR/include/openssl/opensslv.h 2>/dev/null || echo 'NOT FOUND')"
+# 增加 OPENSSL_CFLAGS, OPENSSL_LIBS, LIBSSH2_CFLAGS, LIBSSH2_LIBS 显式指定
+# 同时导出 LIBS 确保 configure 检测时能链接基础库
+export LIBS="-ldl -lpthread -lz"
 
 ./configure \
     --host=$HOST \
@@ -46,6 +49,10 @@ echo "Check OpenSSL header: $(ls -l $LOCAL_DIR/include/openssl/opensslv.h 2>/dev
     --with-sqlite3 --with-sqlite3-prefix=${LOCAL_DIR} \
     --with-libcares --with-libcares-prefix=${LOCAL_DIR} \
     --with-libssh2 --with-libssh2-prefix=${LOCAL_DIR} \
+    OPENSSL_CFLAGS="-I$LOCAL_DIR/include" \
+    OPENSSL_LIBS="-L$LOCAL_DIR/lib -lssl -lcrypto $LIBS" \
+    LIBSSH2_CFLAGS="-I$LOCAL_DIR/include" \
+    LIBSSH2_LIBS="-L$LOCAL_DIR/lib -lssh2 $LIBS" \
     ARIA2_STATIC=yes
 
 echo "Building aria2..."
