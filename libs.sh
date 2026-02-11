@@ -100,7 +100,7 @@ cd openssl-${OPENSSL_VER}/
 PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig/ LD_LIBRARY_PATH=$PREFIX/lib/ \
 CC=$CC CXX=$CXX \
 ./Configure linux-aarch64 no-shared no-module no-asm enable-legacy $CFLAGS --prefix=$PREFIX --libdir=lib zlib -D_GNU_SOURCE -D_BSD_SOURCE --with-zlib-lib=$LOCAL_DIR/lib --with-zlib-include=$LOCAL_DIR/include
-$MAKE CC=$CC && make CC=$CC install
+$MAKE CC=$CC && make CC=$CC install_sw
 cd ..
 
 echo "Building sqlite-autoconf-${SQLITE_VER}..."
@@ -129,5 +129,8 @@ cd ..
 # 清理
 echo "Cleaning up..."
 rm -rf c-ares* sqlite-autoconf* zlib-* expat-* openssl-* libssh2-*
+
+# 关键修复：确保所有用户都有权限读取编译好的库（修复 Actions 运行权限问题）
+sudo chmod -R 755 /opt/aria2-aarch64
 
 echo "All libraries version ${ZLIB_VER}, ${OPENSSL_VER}, ${EXPAT_VER}, ${SQLITE_VER}, ${C_ARES_VER}, ${LIBSSH2_VER} finished!"
