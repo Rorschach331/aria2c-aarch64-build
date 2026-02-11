@@ -102,7 +102,7 @@ jobs:
             > This project's build scripts and configuration were analyzed, fixed, and optimized using **Antigravity AI**.
 
       - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@v2.1.0
+        uses: Mattraks/delete-workflow-runs@v2
         with:
           retain_days: 1
           keep_minimum_runs: 3
